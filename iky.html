@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknologi Modern: Manfaat dan Dampaknya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Loading Animation */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loader {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+        
+        .loader-inner {
+            position: absolute;
+            border: 4px solid transparent;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .loader-inner:nth-child(2) {
+            border: 4px solid transparent;
+            border-bottom: 4px solid #e74c3c;
+            animation: spin-reverse 1.5s linear infinite;
+        }
+        
+        .loading-text {
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+            letter-spacing: 2px;
+        }
+        
+        .loading-subtext {
+            color: #ecf0f1;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        
+        .student-info {
+            position: absolute;
+            bottom: 20px;
+            color: #ecf0f1;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes spin-reverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a6491" opacity="0.2"/><path d="M0 0L100 100" stroke="%232c3e50" stroke-width="2" opacity="0.2"/><path d="M100 0L0 100" stroke="%232c3e50" stroke-width="2" opacity="0.2"/></svg>');
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 10%, #f5f5f5 90%);
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #555;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .content {
+            flex: 2;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar:hover {
+            transform: translateY(-5px);
+        }
+        
+        section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: #f9f9f9;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icons {
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            background: #3498db;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            margin-top: 15px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .loading-text {
+                font-size: 22px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .content, .sidebar {
+                padding: 20px 15px;
+            }
+            
+            .loading-text {
+                font-size: 20px;
+            }
+        }
+        
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .content,
+        body.dark-mode .sidebar {
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .card {
+            background-color: #333;
+        }
+        
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #4a9eff;
+        }
+        
+        body.dark-mode .hero h1 {
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .hero p {
+            color: #ccc;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Task info */
+        .task-info {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .task-info h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .task-info p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div id="loading">
+        <div class="loader">
+            <div class="loader-inner"></div>
+            <div class="loader-inner"></div>
+        </div>
+        <div class="loading-text">Rizzzkyy</div>
+        <div class="loading-subtext">Teknologi Masa Depan</div>
+        <div class="student-info">
+            NAMA: MUHAMMAD RIZKY FAHRIANTO | KELAS: IX.6 | TUGAS INFORMATIKA
+        </div>
+    </div>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                TeknoBlog
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#pendahuluan">Pendahuluan</a></li>
+                    <li><a href="#pengertian">Pengertian</a></li>
+                    <li><a href="#manfaat">Manfaat</a></li>
+                    <li><a href="#dampak">Dampak</a></li>
+                    <li><a href="#contoh">Contoh</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Teknologi Modern: Manfaat dan Dampaknya</h1>
+            <p>Mengenal lebih dalam tentang perkembangan teknologi dan pengaruhnya dalam kehidupan sehari-hari</p>
+        </div>
+    </section>
+    
+    <div class="container main-content">
+        <div class="content">
+            <div class="task-info">
+                <h3><i class="fas fa-user-graduate"></i> Tugas Informatika</h3>
+                <p><strong>Nama:</strong> MUHAMMAD RIZKY FAHRIANTO</p>
+                <p><strong>Kelas:</strong> IX.6</p>
+                <p><strong>Email:</strong> kytyg800@gmail.com</p>
+                <p><strong>No. HP:</strong> 628321345547</p>
+            </div>
+            
+            <section id="pendahuluan">
+                <h2><i class="fas fa-arrow-right"></i> Pendahuluan</h2>
+                <p>Perkembangan teknologi telah mengubah cara kita hidup, bekerja, dan berinteraksi. Dalam beberapa dekade terakhir, kemajuan teknologi telah terjadi dengan kecepatan yang luar biasa, membawa serta berbagai perubahan signifikan dalam masyarakat global.</p>
+                <p>Dari internet hingga artificial intelligence, teknologi terus berkembang dan memberikan dampak yang semakin luas. Website ini akan membahas berbagai aspek teknologi, mulai dari pengertian, manfaat, hingga dampak positif dan negatifnya.</p>
+            </section>
+            
+            <section id="pengertian">
+                <h2><i class="fas fa-book"></i> Pengertian Teknologi</h2>
+                <p>Teknologi berasal dari kata Yunani "techne" yang berarti kerajinan dan "logia" yang berarti studi tentang sesuatu. Jadi, teknologi dapat diartikan sebagai studi tentang kerajinan. Namun, dalam pengertian modern, teknologi mengacu pada penerapan pengetahuan ilmiah untuk tujuan praktis, terutama dalam industri.</p>
+                <p>Teknologi mencakup alat, mesin, teknik, sistem, dan metode organisasi yang digunakan untuk memecahkan masalah atau mencapai tujuan. Dalam konteks kontemporer, teknologi sering dikaitkan dengan inovasi digital dan elektronik.</p>
+            </section>
+            
+            <section id="manfaat">
+                <h2><i class="fas fa-plus-circle"></i> Manfaat Teknologi</h2>
+                <div class="card">
+                    <h3><i class="fas fa-bolt"></i> Efisiensi dan Produktivitas</h3>
+                    <p>Teknologi telah meningkatkan efisiensi di berbagai sektor, memungkinkan penyelesaian tugas yang lebih cepat dan dengan sumber daya yang lebih sedikit.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-globe"></i> Komunikasi Global</h3>
+                    <p>Dengan teknologi komunikasi modern, kita dapat terhubung dengan orang-orang di seluruh dunia dalam hitungan detik, memungkinkan kolaborasi dan pertukaran ide secara global.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-book-open"></i> Akses Informasi</h3>
+                    <p>Internet telah membuka akses ke informasi yang belum pernah terjadi sebelumnya, memungkinkan pembelajaran dan penelitian yang lebih mudah bagi semua orang.</p>
+                </div>
+            </section>
+            
+            <section id="dampak">
+                <h2><i class="fas fa-balance-scale"></i> Dampak Positif dan Negatif Teknologi</h2>
+                <h3><i class="fas fa-thumbs-up"></i> Dampak Positif</h3>
+                <ul>
+                    <li>Peningkatan kualitas hidup melalui kemajuan medis dan kesehatan</li>
+                    <li>Penciptaan lapangan kerja baru di sektor teknologi</li>
+                    <li>Peningkatan akses pendidikan melalui e-learning</li>
+                    <li>Optimasi proses bisnis dan industri</li>
+                    <li>Pengembangan energi terbarukan dan solusi ramah lingkungan</li>
+                </ul>
+                
+                <h3><i class="fas fa-thumbs-down"></i> Dampak Negatif</h3>
+                <ul>
+                    <li>Kecanduan teknologi dan media sosial</li>
+                    <li>Ancaman terhadap privasi dan keamanan data</li>
+                    <li>Pengangguran teknologi karena otomatisasi</li>
+                    <li>Polusi digital dan konsumsi energi yang tinggi</li>
+                    <li>Ketimpangan digital antara yang mampu dan tidak mampu</li>
+                </ul>
+            </section>
+            
+            <section id="contoh">
+                <h2><i class="fas fa-lightbulb"></i> Contoh Teknologi Modern</h2>
+                <ol>
+                    <li><strong>Artificial Intelligence (AI)</strong> - Kecerdasan buatan yang memungkinkan mesin untuk belajar dan berpikir seperti manusia</li>
+                    <li><strong>Internet of Things (IoT)</strong> - Jaringan perangkat fisik yang terhubung ke internet dan dapat berkomunikasi satu sama lain</li>
+                    <li><strong>Blockchain</strong> - Teknologi ledger terdistribusi yang mendukung cryptocurrency seperti Bitcoin</li>
+                    <li><strong>5G</strong> - Generasi kelima teknologi jaringan seluler yang menawarkan kecepatan lebih tinggi dan latency lebih rendah</li>
+                    <li><strong>Virtual Reality (VR) dan Augmented Reality (AR)</strong> - Teknologi yang menciptakan atau meningkatkan lingkungan digital</li>
+                </ol>
+            </section>
+            
+            <section id="kesimpulan">
+                <h2><i class="fas fa-check-circle"></i> Kesimpulan</h2>
+                <p>Teknologi adalah kekuatan pendorong yang tak terbantahkan dalam dunia modern, membawa serta berbagai manfaat dan tantangan. Meskipun teknologi telah meningkatkan hidup kita dalam banyak hal, penting untuk menyadari dan mengatasi dampak negatifnya.</p>
+                <p>Sebagai masyarakat, kita perlu mengadopsi pendekatan yang seimbang terhadap teknologi, memanfaatkan manfaatnya sambil mengurangi risikonya. Pendidikan dan regulasi yang tepat akan memastikan bahwa teknologi terus berkembang dengan cara yang bermanfaat bagi umat manusia dan planet ini.</p>
+            </section>
+        </div>
+        
+        <div class="sidebar">
+            <h2><i class="fas fa-newspaper"></i> Artikel Terkait</h2>
+            <ul>
+                <li><a href="#"><i class="fas fa-arrow-right"></i> Masa Depan AI dalam Kehidupan Sehari-hari</a></li>
+                <li><a href="#"><i class="fas fa-arrow-right"></i> Etika dalam Pengembangan Teknologi</a></li>
+                <li><a href="#"><i class="fas fa-arrow-right"></i> Cara Menjaga Privasi di Era Digital</a></li>
+                <li><a href="#"><i class="fas fa-arrow-right"></i> Teknologi Hijau: Solusi untuk Masa Depan</a></li>
+                <li><a href="#"><i class="fas fa-arrow-right"></i> Peran Teknologi dalam Pendidikan Modern</a></li>
+            </ul>
+            
+            <h2><i class="fas fa-envelope"></i> Subscribe</h2>
+            <p>Dapatkan update artikel terbaru dengan berlangganan newsletter kami:</p>
+            <form>
+                <input type="email" placeholder="Alamat email Anda" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px;">
+                <button type="submit" style="background: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%;">Berlangganan</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Tentang Kami</h3>
+                <p>TeknoBlog adalah platform edukasi yang menyajikan informasi terkini seputar teknologi dan dampaknya bagi masyarakat.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> Email: info@teknoblog.com</p>
+                    <p><i class="fas fa-phone"></i> Telepon: (021) 1234-5678</p>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Tautan Cepat</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> Beranda</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> Tentang</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> Kebijakan Privasi</a></li>
+                    <li><a href="#"><i class="fas fa-arrow-right"></i> Syarat dan Ketentuan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TeknoBlog. All rights reserved. | NAMA: MUHAMMAD RIZKY FAHRIANTO | KELAS: IX.6 | TUGAS INFORMATIKA</p>
+        </div>
+    </footer>
+    
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+        
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const button = document.querySelector('.dark-mode-toggle');
+            const icon = button.querySelector('i');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const button = document.querySelector('.dark-mode-toggle');
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
